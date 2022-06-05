@@ -4,8 +4,9 @@ import os
 import openai
 import streamlit as st
 
+os.environ["openai_key"] == st.secrets["openai_key"]
 # Connect to OpenAI GPT-3, fetch API key from Streamlit secrets
-openai.api_key = os.getenv(st.secrets["openai_key"])
+openai.api_key = os.getenv(os.environ["openai_key"])
 
 # DESIGN implement changes to the standard streamlit UI/UX
 st.set_page_config(page_title="streamlit_audio_recorder")
