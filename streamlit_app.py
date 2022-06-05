@@ -90,15 +90,15 @@ def main_gpt3emailgen():
     input_contents_2 = st.text_input('Email Content 2', 'content 2 here')
 
     email_text = ""
-    col1, col2, col3, col4, col5 = st.columns([5, 1, 5, 1, 5])
+    col1, col2, col3, col4, col5 = st.columns([5, 0.5, 5, 0.5, 5])
 
     with col1:
         input_sender = st.text_input('Sender Name', 'your name here')
     with col3:
         input_recipient = st.text_input('Recipient Name', 'recipient name here')
     with col5:
-        st.write("\n\n")  # add spacing 
-        if st.button('Generate Email'):
+        st.write("\n\n\n\n")  # add spacing
+        if st.button('Generate Email 📧'):
             with st.spinner():
                 input_contents = []  # let the user input all the data
                 if input_contents_1 != "":
