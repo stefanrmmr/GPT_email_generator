@@ -70,7 +70,7 @@ def main_gpt3emailgen():
     st.markdown('Implemented by '
         '[Stefan Rummer](https://www.linkedin.com/in/stefanrmmr/) - '
         'view project source code on '
-        '[GitHub](https://github.com/stefanrmmr/gpt3_mail_generator)')
+        '[GitHub](https://github.com/stefanrmmr/gpt3_email_generator)')
     st.write('\n\n')
 
 
