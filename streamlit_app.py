@@ -5,7 +5,7 @@ import openai
 import streamlit as st
 
 # DESIGN implement changes to the standard streamlit UI/UX
-st.set_page_config(page_title="EmAIl Generator 📧 ")
+st.set_page_config(page_title="EmAIl Generator")
 # Design move app further up and remove top padding
 st.markdown('''<style>.css-1egvi7u {margin-top: -4rem;}</style>''',
     unsafe_allow_html=True)
@@ -81,7 +81,7 @@ def gen_mail_format(sender, recipient, contents):
 def main_gpt3emailgen():
 
     # TITLE and Creator information
-    st.title('GPT-3 EmAIl Generator')
+    st.title('GPT-3 EmAIl Generator 📧 ')
     st.markdown('Generate professional sounding emails based on your cheap comments - powered by Artificial Intelligence!\nImplemented by '
         '[Stefan Rummer](https://www.linkedin.com/in/stefanrmmr/) - '
         'view project source code on '
