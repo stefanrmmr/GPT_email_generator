@@ -85,24 +85,31 @@ def main_gpt3emailgen():
         '[GitHub](https://github.com/stefanrmmr/gpt3_email_generator)')
     st.write('\n\n')
 
+    st.subheader('\nWhat is you email all about?\n')
 
-    input_sender = st.text_input('Sender Name', 'your name here')
-    input_recipient = st.text_input('Recipient Name', 'recipient name here')
     input_contents_1 = st.text_input('Email Content 1', 'content 1 here')
     input_contents_2 = st.text_input('Email Content 2', 'content 2 here')
 
-    input_contents = []  # let the user input all the data
-    if input_contents_1 != "":
-        input_contents.append(str(input_contents_1))
-    if input_contents_2 != "":
-        input_contents.append(str(input_contents_2))
+    email_text = ""
+    col1, col2, col3, col4, col5 = st.columns([5, 1, 5, 1, 5])
 
-    if st.button('Generate Email'):
-        with st.spinner():
-            email_text = gen_mail_format(input_sender, input_recipient, input_contents)
+    with col1:
+        input_sender = st.text_input('Sender Name', 'your name here')
+    with col3:
+        input_recipient = st.text_input('Recipient Name', 'recipient name here')
+    with col5:
+        if st.button('Generate Email'):
+            with st.spinner():
+                input_contents = []  # let the user input all the data
+                if input_contents_1 != "":
+                    input_contents.append(str(input_contents_1))
+                if input_contents_2 != "":
+                    input_contents.append(str(input_contents_2))
+                email_text = gen_mail_format(input_sender, input_recipient, input_contents)
 
-            st.title('You will sound incredibly professional with this email!')
-            st.markdown(email_text)  #output the results
+    if email_text != "":
+        st.subheader('\nYou will sound incredibly professional with this email!\n')
+        st.markdown(email_text)  #output the results
 
 
 if __name__ == '__main__':
