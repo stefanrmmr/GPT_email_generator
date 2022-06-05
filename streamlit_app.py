@@ -109,7 +109,7 @@ def main_gpt3emailgen():
                 email_text = gen_mail_format(input_sender, input_recipient, input_contents)
 
     if email_text != "":
-        st.subheader('\nYou will sound incredibly professional with this email!\n')
+        st.subheader('\n\nYou will sound incredibly professional with this email!\n')
         st.markdown(email_text)  #output the results
 
 
