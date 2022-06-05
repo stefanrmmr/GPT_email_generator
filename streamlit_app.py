@@ -5,7 +5,7 @@ import openai
 import streamlit as st
 
 # DESIGN implement changes to the standard streamlit UI/UX
-st.set_page_config(page_title="EmAIl Generator", layout="wide")
+st.set_page_config(page_title="EmAIl Generator")
 # Design move app further up and remove top padding
 st.markdown('''<style>.css-1egvi7u {margin-top: -4rem;}</style>''',
     unsafe_allow_html=True)
@@ -83,46 +83,42 @@ def main_gpt3emailgen():
 
     # TITLE and Creator information
     st.title('GPT-3 EmAIl Generator')
-    st.markdown('Generate professional sounding emails based on your cheap comments 📧 - powered by Artificial Intelligence!<br>Implemented by '
+    st.markdown('Generate professional sounding emails based on your cheap comments 📧 - powered by Artificial Intelligence!\n\nImplemented by '
         '[Stefan Rummer](https://www.linkedin.com/in/stefanrmmr/) - '
         'view project source code on '
         '[GitHub](https://github.com/stefanrmmr/gpt3_email_generator)')
     st.write('\n')
 
-    col_l, col_r = st.columns([1,1])
+    st.subheader('\nWhat is your email all about?\n')
 
-    with col_l:
-        st.subheader('\nWhat is your email all about?\n')
+    with st.expander("SECTION - Email Input", expanded=True):
+        input_contents_1 = st.text_input('Email Content 1', 'content 1 here')
+        input_contents_2 = st.text_input('', 'content 2 here')
 
-        with st.expander("SECTION - Email Input", expanded=True):
-            input_contents_1 = st.text_input('Email Content 1', 'content 1 here')
-            input_contents_2 = st.text_input('', 'content 2 here')
+        email_text = ""
+        col1, col3, col4, col5 = st.columns([5, 5, 0.5, 5])
 
-            email_text = ""
-            col1, col3, col4, col5 = st.columns([5, 5, 0.5, 5])
+        with col1:
+            input_sender = st.text_input('Sender Name', 'your name here')
+        with col3:
+            input_recipient = st.text_input('Recipient Name', 'recipient name here')
+        with col5:
+            st.write("\n")  # add spacing
+            st.write("\n")  # add spacing
+            if st.button('Generate Email NOW!'):
+                with st.spinner():
+                    input_contents = []  # let the user input all the data
+                    if input_contents_1 != "":
+                        input_contents.append(str(input_contents_1))
+                    if input_contents_2 != "":
+                        input_contents.append(str(input_contents_2))
+                    email_text = gen_mail_format(input_sender, input_recipient, input_contents)
 
-            with col1:
-                input_sender = st.text_input('Sender Name', 'your name here')
-            with col3:
-                input_recipient = st.text_input('Recipient Name', 'recipient name here')
-            with col5:
-                st.write("\n")  # add spacing
-                st.write("\n")  # add spacing
-                if st.button('Generate Email NOW!'):
-                    with st.spinner():
-                        input_contents = []  # let the user input all the data
-                        if input_contents_1 != "":
-                            input_contents.append(str(input_contents_1))
-                        if input_contents_2 != "":
-                            input_contents.append(str(input_contents_2))
-                        email_text = gen_mail_format(input_sender, input_recipient, input_contents)
-
-    with col_r:
-        if email_text != "":
-            st.write('\n')  # add spacing
-            st.subheader('\nYou will sound incredibly professional with this email!\n')
-            with st.expander("SECTION - Email Output", expanded=True):
-                st.markdown(email_text)  #output the results
+    if email_text != "":
+        st.write('\n')  # add spacing
+        st.subheader('\nYou will sound incredibly professional with this email!\n')
+        with st.expander("SECTION - Email Output", expanded=True):
+            st.markdown(email_text)  #output the results
 
 
 if __name__ == '__main__':
