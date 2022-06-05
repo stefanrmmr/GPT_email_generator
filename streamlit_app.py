@@ -34,10 +34,10 @@ st.markdown(
     """
     <style>
     [data-testid="stSidebar"][aria-expanded="true"] > div:first-child {
-        width: 50%;
+        width: 800px;
     }
     [data-testid="stSidebar"][aria-expanded="false"] > div:first-child {
-        width: 50%;
+        width: 800px;
         margin-left: -500px;
     }
     </style>
@@ -94,8 +94,6 @@ def gen_mail_format(sender, recipient, contents):
 
 
 def main_gpt3emailgen():
-
-    file_expander = st.sidebar.beta_expander('servus')
 
     # TITLE and Creator information
     st.title('GPT-3 EmAIl Generator')
