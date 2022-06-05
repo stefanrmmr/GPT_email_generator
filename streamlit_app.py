@@ -81,6 +81,8 @@ def gen_mail_format(sender, recipient, contents):
 
 def main_gpt3emailgen():
 
+    file_expander = st.sidebar.beta_expander('servus')
+
     # TITLE and Creator information
     st.title('GPT-3 EmAIl Generator')
     st.markdown('Generate professional sounding emails based on your cheap comments 📧 - powered by Artificial Intelligence! Implemented by '
