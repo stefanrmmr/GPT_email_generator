@@ -76,8 +76,10 @@ def main_gpt3emailgen():
     input_contents = []  # let the user input all the data
     input_sender = st.text_input('Sender Name', 'your name here')
     input_recipient = st.text_input('Recipient Name', 'recipient name here')
-    input_contents[0] = st.text_input('Email Content 1', 'content 1 here')
-    input_contents[1] = st.text_input('Email Content 2', 'content 2 here')
+    input_contents_1 = st.text_input('Email Content 1', 'content 1 here')
+    input_contents_2 = st.text_input('Email Content 2', 'content 2 here')
+    input_contents = input_contents.append(input_contents_1)
+    input_contents = input_contents.append(input_contents_2)
 
     if st.button('Generate Email'):
         with st.spinner():
