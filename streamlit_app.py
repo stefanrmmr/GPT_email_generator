@@ -10,9 +10,9 @@ st.set_page_config(page_title="EmAIl Generator")
 st.markdown('''<style>.css-1egvi7u {margin-top: -4rem;}</style>''',
     unsafe_allow_html=True)
 # Design change hyperlink href link color
-st.markdown('''<style>.css-v37k9u a {color: #ff4c4b;}</style>''',
+st.markdown('''<style>.css-v37k9u a {color: #9d03fc;}</style>''',
     unsafe_allow_html=True)  # darkmode
-st.markdown('''<style>.css-nlntq9 a {color: #ff4c4b;}</style>''',
+st.markdown('''<style>.css-nlntq9 a {color: #9d03fc;}</style>''',
     unsafe_allow_html=True)  # lightmode
 
 # Design change height of text input fields headers
