@@ -99,6 +99,7 @@ def main_gpt3emailgen():
     with col5:
         st.write("\n")  # add spacing
         st.write("\n")  # add spacing
+        st.write('\n')  # add spacing 
         if st.button('Generate Email'):
             with st.spinner():
                 input_contents = []  # let the user input all the data
@@ -109,8 +110,10 @@ def main_gpt3emailgen():
                 email_text = gen_mail_format(input_sender, input_recipient, input_contents)
 
     if email_text != "":
-        st.subheader('\n\nYou will sound incredibly professional with this email!\n')
-        st.markdown(email_text)  #output the results
+        st.write('\n')  # add spacing
+        st.subheader('\nYou will sound incredibly professional with this email!\n')
+        with st.expander("Your professional Email - written by AI & appreciated by your peers!"):
+            st.markdown(email_text)  #output the results
 
 
 if __name__ == '__main__':
