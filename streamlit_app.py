@@ -7,10 +7,7 @@ import streamlit as st
 # DESIGN implement changes to the standard streamlit UI/UX
 st.set_page_config(page_title="streamlit_audio_recorder")
 # Design move app further up and remove top padding
-st.markdown('''<style>.css-1egvi7u {margin-top: -3rem;}</style>''',
-    unsafe_allow_html=True)
-# Design change st.Audio to fixed height of 45 pixels
-st.markdown('''<style>.stAudio {height: 45px;}</style>''',
+st.markdown('''<style>.css-1egvi7u {margin-top: -4rem;}</style>''',
     unsafe_allow_html=True)
 # Design change hyperlink href link color
 st.markdown('''<style>.css-v37k9u a {color: #ff4c4b;}</style>''',
@@ -34,6 +31,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 def gen_mail_contents(email_contents):
+
     # iterate through all seperate topics
     for topic in range(len(email_contents)):
         input_text = email_contents[topic]
@@ -47,6 +45,7 @@ def gen_mail_contents(email_contents):
             best_of=3,
             frequency_penalty=0,
             presence_penalty=0)
+
         # replace existing topic text with updated
         email_contents[topic] = rephrased_content.get("choices")[0]['text']
     return email_contents
@@ -98,6 +97,7 @@ def main_gpt3emailgen():
     with col3:
         input_recipient = st.text_input('Recipient Name', 'recipient name here')
     with col5:
+        st.write("\n\n")  # add spacing 
         if st.button('Generate Email'):
             with st.spinner():
                 input_contents = []  # let the user input all the data
