@@ -21,6 +21,17 @@ st.markdown('''<style>.css-v37k9u a {color: #ff4c4b;}</style>''',
 st.markdown('''<style>.css-nlntq9 a {color: #ff4c4b;}</style>''',
     unsafe_allow_html=True)  # lightmode
 
+# Design hide top header line
+hide_decoration_bar_style = '''<style>header {visibility: hidden;}</style>'''
+st.markdown(hide_decoration_bar_style, unsafe_allow_html=True)
+
+# Design hide "made with streamlit" footer menu area
+hide_streamlit_footer = """<style>
+                        #MainMenu {visibility: hidden;}
+                        footer {visibility: hidden;}
+                        </style>"""
+st.markdown(hide_streamlit_footer, unsafe_allow_html=True)
+
 
 def gen_mail_contents(email_contents):
     # iterate through all seperate topics
