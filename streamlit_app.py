@@ -5,7 +5,7 @@ import openai
 import streamlit as st
 
 # DESIGN implement changes to the standard streamlit UI/UX
-st.set_page_config(page_title="EmAIl Generator")
+st.set_page_config(page_title="EmAIl Generator", layout="wide")
 # Design move app further up and remove top padding
 st.markdown('''<style>.css-1egvi7u {margin-top: -4rem;}</style>''',
     unsafe_allow_html=True)
@@ -29,9 +29,6 @@ hide_streamlit_footer = """<style>
                         footer {visibility: hidden;}
                         </style>"""
 st.markdown(hide_streamlit_footer, unsafe_allow_html=True)
-
-# change app appearance to wide mode
-st.set_page_config(layout="wide")
 
 
 # Connect to OpenAI GPT-3, fetch API key from Streamlit secrets
