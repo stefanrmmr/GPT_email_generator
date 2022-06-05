@@ -42,7 +42,7 @@ def gen_mail_contents(email_contents):
             engine="text-davinci-002",
             prompt=f"Rewrite the text to sound professional, polite and motivated. {input_text}\nText: \nRewritten text:",
             temperature=0,
-            max_tokens=text_length,
+            max_tokens=text_length*2,
             top_p=0.68,
             best_of=3,
             frequency_penalty=0,
@@ -65,7 +65,7 @@ def gen_mail_format(sender, recipient, contents):
     email_final_text = openai.Completion.create(
         engine="text-davinci-002",
         prompt=f"Write a professional sounding email text that includes all of the following contents separately.\nThe text needs to be written to adhere to the specified writing styles and abbreviations need to be replaced.\n\nSender: {sender}\nRecipient: {recipient} {contents_str}\nWriting Styles: motivated, formal\n\nEmail Text:",
-        temperature=1,
+        temperature=0.9,
         max_tokens=100+contents_length*3,
         top_p=0.52,
         best_of=3,
