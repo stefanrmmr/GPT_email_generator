@@ -1,8 +1,11 @@
-# streamlit_audio_recorder by stefanrmmr (rs. analytics) - version April 2022
+# gpt3 professional email generator by stefanrmmr - version June 2022
 
 import os
+import openai
 import streamlit as st
-import streamlit.components.v1 as components
+
+# INITIATE connection to OpenAI GPT-3
+openai.api_key = os.getenv("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")
 
 # DESIGN implement changes to the standard streamlit UI/UX
 st.set_page_config(page_title="streamlit_audio_recorder")
@@ -19,27 +22,70 @@ st.markdown('''<style>.css-nlntq9 a {color: #ff4c4b;}</style>''',
     unsafe_allow_html=True)  # lightmode
 
 
-def audiorec_demo_app():
+def gen_mail_contents(email_contents):
+    # iterate through all seperate topics
+    for topic in range(len(email_contents)):
+        input_text = email_contents[topic]
+        text_length = len(input_text)
+        rephrased_content = openai.Completion.create(
+            engine="text-davinci-002",
+            prompt=f"Rewrite the text to sound professional, polite and motivated. {input_text}\nText: \nRewritten text:",
+            temperature=0,
+            max_tokens=text_length,
+            top_p=0.68,
+            best_of=3,
+            frequency_penalty=0,
+            presence_penalty=0)
+        # replace existing topic text with updated
+        email_contents[topic] = rephrased_content
+    return email_contents
 
-    parent_dir = os.path.dirname(os.path.abspath(__file__))
-    # Custom REACT-based component for recording client audio in browser
-    build_dir = os.path.join(parent_dir, "st_audiorec/frontend/build")
-    # specify directory and initialize st_audiorec object functionality
-    st_audiorec = components.declare_component("st_audiorec", path=build_dir)
+
+def gen_mail_format(sender, recipient, contents):
+    # update the contents data with more formal statements
+    contents = gen_mail_contents(contents)
+
+    contents_str, contents_length = "", 0
+    for topic in contents:  # aggregate all contents into one
+        contents_str = contents_str + "\nContent: " + topic
+        contents_length += len(topic)  # calc total chars
+
+    email_final_text = openai.Completion.create(
+        engine="text-davinci-002",
+        prompt=f"Write a professional sounding email text that includes all of the following contents separately.\nThe text needs to be written to adhere to the specified writing styles and abbreviations need to be replaced.\n\nSender: {sender}\nRecipient: {recipient} {contents_str}\nWriting Styles: motivated, formal\n\nEmail Text:",
+        temperature=1,
+        max_tokens=100+contents_length,
+        top_p=0.52,
+        best_of=3,
+        frequency_penalty=0,
+        presence_penalty=1.4)
+
+    return email_final_text
+
+
+def main_gpt3emailgen():
 
     # TITLE and Creator information
-    st.title('streamlit audio recorder')
+    st.title('GPT-3 Professional Email Generator')
     st.markdown('Implemented by '
         '[Stefan Rummer](https://www.linkedin.com/in/stefanrmmr/) - '
         'view project source code on '
-        '[GitHub](https://github.com/stefanrmmr/streamlit_audio_recorder)')
+        '[GitHub](https://github.com/stefanrmmr/gpt3_mail_generator)')
     st.write('\n\n')
 
-    # STREAMLIT AUDIO RECORDER Instance
-    st_audiorec()
+    input_contents = []  # let the user input all the data
+    input_sender = st.text_input('Sender Name', 'your name here')
+    input_recipient = st.text_input('Recipient Name', 'recipient name here')
+    input_contents[0] = st.text_input('Email Content 1', 'content 1 here')
+    input_contents[1] = st.text_input('Email Content 2', 'content 2 here')
+
+    if st.button('Generate Email'):
+        with st.spinner():
+            email_text = gen_mail_format(input_sender, input_recipient, input_contents)
+
+            st.text(email_text)  #output the results
 
 
 if __name__ == '__main__':
-
     # call main function
-    audiorec_demo_app()
+    main_gpt3emailgen()
