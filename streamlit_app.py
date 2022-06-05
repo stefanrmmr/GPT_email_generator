@@ -95,9 +95,9 @@ def main_gpt3emailgen():
         email_text = ""  # initialize columns variables
 
         with col1:
-            input_sender = st.text_input('Sender Name', 'your name here')
+            input_sender = st.text_input('Sender Name', 'your name')
         with col3:
-            input_recipient = st.text_input('Recipient Name', 'recipient name here')
+            input_recipient = st.text_input('Recipient Name', 'recipient name')
         with col5:
             st.write("\n")  # add spacing
             st.write("\n")  # add spacing
