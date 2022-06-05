@@ -19,6 +19,10 @@ st.markdown('''<style>.css-znku1x a {color: #9d03fc;}</style>''',
 st.markdown('''<style>.css-qrbaxs {min-height: 0.0rem;}</style>''',
     unsafe_allow_html=True)
 
+# Design change spinner color to primary color
+st.markdown('''<style>.stSpinner > div > div {border-top-color: #9d03fc;}</style>''',
+    unsafe_allow_html=True)
+
 # Design hide top header line
 hide_decoration_bar_style = '''<style>header {visibility: hidden;}</style>'''
 st.markdown(hide_decoration_bar_style, unsafe_allow_html=True)
