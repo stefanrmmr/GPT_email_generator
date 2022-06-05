@@ -14,24 +14,18 @@ st.markdown('''<style>.css-znku1x a {color: #9d03fc;}</style>''',
     unsafe_allow_html=True)  # darkmode
 st.markdown('''<style>.css-znku1x a {color: #9d03fc;}</style>''',
     unsafe_allow_html=True)  # lightmode
-
 # Design change height of text input fields headers
 st.markdown('''<style>.css-qrbaxs {min-height: 0.0rem;}</style>''',
     unsafe_allow_html=True)
-
 # Design change spinner color to primary color
 st.markdown('''<style>.stSpinner > div > div {border-top-color: #9d03fc;}</style>''',
     unsafe_allow_html=True)
-
 # Design hide top header line
 hide_decoration_bar_style = '''<style>header {visibility: hidden;}</style>'''
 st.markdown(hide_decoration_bar_style, unsafe_allow_html=True)
-
 # Design hide "made with streamlit" footer menu area
-hide_streamlit_footer = """<style>
-                        #MainMenu {visibility: hidden;}
-                        footer {visibility: hidden;}
-                        </style>"""
+hide_streamlit_footer = """<style>#MainMenu {visibility: hidden;}
+                        footer {visibility: hidden;}</style>"""
 st.markdown(hide_streamlit_footer, unsafe_allow_html=True)
 
 
@@ -40,7 +34,6 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 def gen_mail_contents(email_contents):
-
     # iterate through all seperate topics
     for topic in range(len(email_contents)):
         input_text = email_contents[topic]
@@ -54,7 +47,6 @@ def gen_mail_contents(email_contents):
             best_of=3,
             frequency_penalty=0,
             presence_penalty=0)
-
         # replace existing topic text with updated
         email_contents[topic] = rephrased_content.get("choices")[0]['text']
     return email_contents
@@ -99,8 +91,7 @@ def main_gpt3emailgen():
         input_contents_1 = st.text_input('Email Content 1', 'content 1 here')
         input_contents_2 = st.text_input('', 'content 2 here')
 
-        email_text = ""
-        col1, col3, col4, col5 = st.columns([5, 5, 0.5, 5])
+        col1, col3, col4, col5, email_text = st.columns([5, 5, 0.5, 5]), ""
 
         with col1:
             input_sender = st.text_input('Sender Name', 'your name here')
