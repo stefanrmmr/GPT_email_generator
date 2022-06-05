@@ -99,7 +99,7 @@ def main_gpt3emailgen():
     with col5:
         st.write("\n")  # add spacing
         st.write("\n")  # add spacing
-        if st.button('Generate Email 📧'):
+        if st.button('Generate Email  💌'):
             with st.spinner():
                 input_contents = []  # let the user input all the data
                 if input_contents_1 != "":
