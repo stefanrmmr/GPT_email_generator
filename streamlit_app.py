@@ -82,7 +82,6 @@ def gen_mail_format(sender, recipient, contents):
 def main_gpt3emailgen():
 
     # TITLE and Creator information
-    st.title('rephrAIse')
     st.image('EMaiL_banner.png')
     st.markdown('Generate professional sounding emails based on your cheap comments - powered by Artificial Intelligence (OpenAI GPT-3)! Implemented by '
         '[Stefan Rummer](https://www.linkedin.com/in/stefanrmmr/) - '
