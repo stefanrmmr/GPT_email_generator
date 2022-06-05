@@ -112,11 +112,11 @@ def main_gpt3emailgen():
         st.subheader('\nYou will sound incredibly professional with this email!\n')
         st.markdown(email_text)  #output the results
 
-        cola, colb = st.columns([1, 15])
+        cola, colb = st.columns([1, 10])
         with cola:
             mod_text = email_text.replace('\n', '')
             mod_text = '         ' + mod_text
-            st.code(email_text)
+            st.code(mod_text)
         with colb:
             st.write('click here to copy the mail text!')
 
