@@ -5,7 +5,7 @@ import openai
 import streamlit as st
 
 # INITIATE connection to OpenAI GPT-3
-openai.api_key = os.getenv("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")
+openai.api_key = os.getenv("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")
 
 # DESIGN implement changes to the standard streamlit UI/UX
 st.set_page_config(page_title="streamlit_audio_recorder")
