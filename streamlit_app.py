@@ -30,20 +30,6 @@ hide_streamlit_footer = """<style>
                         </style>"""
 st.markdown(hide_streamlit_footer, unsafe_allow_html=True)
 
-st.markdown(
-    """
-    <style>
-    [data-testid="stSidebar"][aria-expanded="true"] > div:first-child {
-        width: 800px;
-    }
-    [data-testid="stSidebar"][aria-expanded="false"] > div:first-child {
-        width: 800px;
-        margin-left: -500px;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True)
-
 
 # Connect to OpenAI GPT-3, fetch API key from Streamlit secrets
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -95,8 +81,6 @@ def gen_mail_format(sender, recipient, contents):
 
 def main_gpt3emailgen():
 
-    file_expander = st.sidebar.beta_expander('servus')
-
     # TITLE and Creator information
     st.title('GPT-3 EmAIl Generator')
     st.markdown('Generate professional sounding emails based on your cheap comments 📧 - powered by Artificial Intelligence! Implemented by '
@@ -107,29 +91,28 @@ def main_gpt3emailgen():
 
     st.subheader('\nWhat is your email all about?\n')
 
-    with st.sidebar('dsfsdfsdf'):
-        with st.expander("SECTION - Email Input", expanded=True):
-            input_contents_1 = st.text_input('Email Content 1', 'content 1 here')
-            input_contents_2 = st.text_input('', 'content 2 here')
+    with st.expander("SECTION - Email Input", expanded=True):
+        input_contents_1 = st.text_input('Email Content 1', 'content 1 here')
+        input_contents_2 = st.text_input('', 'content 2 here')
 
-            email_text = ""
-            col1, col3, col4, col5 = st.columns([5, 5, 0.5, 5])
+        email_text = ""
+        col1, col3, col4, col5 = st.columns([5, 5, 0.5, 5])
 
-            with col1:
-                input_sender = st.text_input('Sender Name', 'your name here')
-            with col3:
-                input_recipient = st.text_input('Recipient Name', 'recipient name here')
-            with col5:
-                st.write("\n")  # add spacing
-                st.write("\n")  # add spacing
-                if st.button('Generate Email NOW!'):
-                    with st.spinner():
-                        input_contents = []  # let the user input all the data
-                        if input_contents_1 != "":
-                            input_contents.append(str(input_contents_1))
-                        if input_contents_2 != "":
-                            input_contents.append(str(input_contents_2))
-                        email_text = gen_mail_format(input_sender, input_recipient, input_contents)
+        with col1:
+            input_sender = st.text_input('Sender Name', 'your name here')
+        with col3:
+            input_recipient = st.text_input('Recipient Name', 'recipient name here')
+        with col5:
+            st.write("\n")  # add spacing
+            st.write("\n")  # add spacing
+            if st.button('Generate Email NOW!'):
+                with st.spinner():
+                    input_contents = []  # let the user input all the data
+                    if input_contents_1 != "":
+                        input_contents.append(str(input_contents_1))
+                    if input_contents_2 != "":
+                        input_contents.append(str(input_contents_2))
+                    email_text = gen_mail_format(input_sender, input_recipient, input_contents)
 
     if email_text != "":
         st.write('\n')  # add spacing
