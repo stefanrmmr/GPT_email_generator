@@ -30,6 +30,20 @@ hide_streamlit_footer = """<style>
                         </style>"""
 st.markdown(hide_streamlit_footer, unsafe_allow_html=True)
 
+st.markdown(
+    """
+    <style>
+    [data-testid="stSidebar"][aria-expanded="true"] > div:first-child {
+        width: 500px;
+    }
+    [data-testid="stSidebar"][aria-expanded="false"] > div:first-child {
+        width: 500px;
+        margin-left: -500px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True)
+
 
 # Connect to OpenAI GPT-3, fetch API key from Streamlit secrets
 openai.api_key = os.getenv("OPENAI_API_KEY")
