@@ -89,36 +89,40 @@ def main_gpt3emailgen():
         '[GitHub](https://github.com/stefanrmmr/gpt3_email_generator)')
     st.write('\n')
 
-    st.subheader('\nWhat is your email all about?\n')
+    col_l, col_r = st.columns([1,1])
 
-    with st.expander("SECTION - Email Input", expanded=True):
-        input_contents_1 = st.text_input('Email Content 1', 'content 1 here')
-        input_contents_2 = st.text_input('', 'content 2 here')
+    with col_l:
+        st.subheader('\nWhat is your email all about?\n')
 
-        email_text = ""
-        col1, col3, col4, col5 = st.columns([5, 5, 0.5, 5])
+        with st.expander("SECTION - Email Input", expanded=True):
+            input_contents_1 = st.text_input('Email Content 1', 'content 1 here')
+            input_contents_2 = st.text_input('', 'content 2 here')
 
-        with col1:
-            input_sender = st.text_input('Sender Name', 'your name here')
-        with col3:
-            input_recipient = st.text_input('Recipient Name', 'recipient name here')
-        with col5:
-            st.write("\n")  # add spacing
-            st.write("\n")  # add spacing
-            if st.button('Generate Email NOW!'):
-                with st.spinner():
-                    input_contents = []  # let the user input all the data
-                    if input_contents_1 != "":
-                        input_contents.append(str(input_contents_1))
-                    if input_contents_2 != "":
-                        input_contents.append(str(input_contents_2))
-                    email_text = gen_mail_format(input_sender, input_recipient, input_contents)
+            email_text = ""
+            col1, col3, col4, col5 = st.columns([5, 5, 0.5, 5])
 
-    if email_text != "":
-        st.write('\n')  # add spacing
-        st.subheader('\nYou will sound incredibly professional with this email!\n')
-        with st.expander("SECTION - Email Output", expanded=True):
-            st.markdown(email_text)  #output the results
+            with col1:
+                input_sender = st.text_input('Sender Name', 'your name here')
+            with col3:
+                input_recipient = st.text_input('Recipient Name', 'recipient name here')
+            with col5:
+                st.write("\n")  # add spacing
+                st.write("\n")  # add spacing
+                if st.button('Generate Email NOW!'):
+                    with st.spinner():
+                        input_contents = []  # let the user input all the data
+                        if input_contents_1 != "":
+                            input_contents.append(str(input_contents_1))
+                        if input_contents_2 != "":
+                            input_contents.append(str(input_contents_2))
+                        email_text = gen_mail_format(input_sender, input_recipient, input_contents)
+
+    with col_r:
+        if email_text != "":
+            st.write('\n')  # add spacing
+            st.subheader('\nYou will sound incredibly professional with this email!\n')
+            with st.expander("SECTION - Email Output", expanded=True):
+                st.markdown(email_text)  #output the results
 
 
 if __name__ == '__main__':
