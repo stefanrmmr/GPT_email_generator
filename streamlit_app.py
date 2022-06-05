@@ -54,7 +54,7 @@ def gen_mail_contents(email_contents):
 def gen_mail_format(sender, recipient, contents):
     # update the contents data with more formal statements
     contents = gen_mail_contents(contents)
-    st.write(contents)
+    # st.write(contents)  # view augmented contents
 
     contents_str, contents_length = "", 0
     for topic in contents:  # aggregate all contents into one
@@ -99,7 +99,7 @@ def main_gpt3emailgen():
     with col5:
         st.write("\n")  # add spacing
         st.write("\n")  # add spacing
-        if st.button('Generate Email  💌'):
+        if st.button('Generate Email'):
             with st.spinner():
                 input_contents = []  # let the user input all the data
                 if input_contents_1 != "":
@@ -111,14 +111,6 @@ def main_gpt3emailgen():
     if email_text != "":
         st.subheader('\nYou will sound incredibly professional with this email!\n')
         st.markdown(email_text)  #output the results
-
-        cola, colb = st.columns([1, 10])
-        with cola:
-            mod_text = email_text.replace('\n', '')
-            mod_text = '         ' + mod_text
-            st.code(mod_text)
-        with colb:
-            st.write('click here to copy the mail text!')
 
 
 if __name__ == '__main__':
