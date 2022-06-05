@@ -6,7 +6,7 @@ base = "light"
 
 # Used to style primary interface elements. It's the color displayed most
 # frequently across your app's widgets (slider, checkbox, buttons)
-primaryColor = "#0072c6" # outlook blue
+primaryColor = "Blue" # outlook blue #0072c6
 
 # Background color for the main container.
 # backgroundColor = "rgba(254,248,239,1)"
