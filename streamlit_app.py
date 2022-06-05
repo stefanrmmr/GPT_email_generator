@@ -107,28 +107,29 @@ def main_gpt3emailgen():
 
     st.subheader('\nWhat is your email all about?\n')
 
-    with st.expander("SECTION - Email Input", expanded=True):
-        input_contents_1 = st.text_input('Email Content 1', 'content 1 here')
-        input_contents_2 = st.text_input('', 'content 2 here')
+    with st.sidebar('dsfsdfsdf')
+        with st.expander("SECTION - Email Input", expanded=True):
+            input_contents_1 = st.text_input('Email Content 1', 'content 1 here')
+            input_contents_2 = st.text_input('', 'content 2 here')
 
-        email_text = ""
-        col1, col3, col4, col5 = st.columns([5, 5, 0.5, 5])
+            email_text = ""
+            col1, col3, col4, col5 = st.columns([5, 5, 0.5, 5])
 
-        with col1:
-            input_sender = st.text_input('Sender Name', 'your name here')
-        with col3:
-            input_recipient = st.text_input('Recipient Name', 'recipient name here')
-        with col5:
-            st.write("\n")  # add spacing
-            st.write("\n")  # add spacing
-            if st.button('Generate Email NOW!'):
-                with st.spinner():
-                    input_contents = []  # let the user input all the data
-                    if input_contents_1 != "":
-                        input_contents.append(str(input_contents_1))
-                    if input_contents_2 != "":
-                        input_contents.append(str(input_contents_2))
-                    email_text = gen_mail_format(input_sender, input_recipient, input_contents)
+            with col1:
+                input_sender = st.text_input('Sender Name', 'your name here')
+            with col3:
+                input_recipient = st.text_input('Recipient Name', 'recipient name here')
+            with col5:
+                st.write("\n")  # add spacing
+                st.write("\n")  # add spacing
+                if st.button('Generate Email NOW!'):
+                    with st.spinner():
+                        input_contents = []  # let the user input all the data
+                        if input_contents_1 != "":
+                            input_contents.append(str(input_contents_1))
+                        if input_contents_2 != "":
+                            input_contents.append(str(input_contents_2))
+                        email_text = gen_mail_format(input_sender, input_recipient, input_contents)
 
     if email_text != "":
         st.write('\n')  # add spacing
