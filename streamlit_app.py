@@ -107,7 +107,7 @@ def main_gpt3emailgen():
 
     st.subheader('\nWhat is your email all about?\n')
 
-    with st.sidebar('dsfsdfsdf')
+    with st.sidebar('dsfsdfsdf'):
         with st.expander("SECTION - Email Input", expanded=True):
             input_contents_1 = st.text_input('Email Content 1', 'content 1 here')
             input_contents_2 = st.text_input('', 'content 2 here')
