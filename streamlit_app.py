@@ -15,6 +15,10 @@ st.markdown('''<style>.css-v37k9u a {color: #ff4c4b;}</style>''',
 st.markdown('''<style>.css-nlntq9 a {color: #ff4c4b;}</style>''',
     unsafe_allow_html=True)  # lightmode
 
+# Design change height of text input fields headers
+st.markdown('''<style>.css-qrbaxs {min-height: 0.0rem;}</style>''',
+    unsafe_allow_html=True)
+
 # Design hide top header line
 hide_decoration_bar_style = '''<style>header {visibility: hidden;}</style>'''
 st.markdown(hide_decoration_bar_style, unsafe_allow_html=True)
@@ -99,7 +103,6 @@ def main_gpt3emailgen():
     with col5:
         st.write("\n")  # add spacing
         st.write("\n")  # add spacing
-        st.write('\n')  # add spacing 
         if st.button('Generate Email'):
             with st.spinner():
                 input_contents = []  # let the user input all the data
@@ -112,7 +115,8 @@ def main_gpt3emailgen():
     if email_text != "":
         st.write('\n')  # add spacing
         st.subheader('\nYou will sound incredibly professional with this email!\n')
-        with st.expander("Your professional Email - written by AI & appreciated by your peers!"):
+        st.write('Your professional Email - written by AI & appreciated by your peers!')
+        with st.expander(""):
             st.markdown(email_text)  #output the results
 
 
