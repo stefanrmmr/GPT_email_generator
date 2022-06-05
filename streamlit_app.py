@@ -112,7 +112,7 @@ def main_gpt3emailgen():
 
     if email_text != "":
         st.write('\n')  # add spacing
-        st.subheader('\nYou will sound incredibly professional!\n')
+        st.subheader('\nYou sound incredibly professional!\n')
         with st.expander("SECTION - Email Output", expanded=True):
             st.markdown(email_text)  #output the results
 
