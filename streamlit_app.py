@@ -81,8 +81,8 @@ def gen_mail_format(sender, recipient, contents):
 def main_gpt3emailgen():
 
     # TITLE and Creator information
-    st.title('GPT-3 EmAIl Generator 📧 ')
-    st.markdown('Generate professional sounding emails based on your cheap comments - powered by Artificial Intelligence!\nImplemented by '
+    st.title('GPT-3 EmAIl Generator')
+    st.markdown('Generate professional sounding emails 📧 based on your cheap comments - powered by Artificial Intelligence!\nImplemented by '
         '[Stefan Rummer](https://www.linkedin.com/in/stefanrmmr/) - '
         'view project source code on '
         '[GitHub](https://github.com/stefanrmmr/gpt3_email_generator)')
