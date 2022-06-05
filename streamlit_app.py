@@ -81,12 +81,11 @@ def gen_mail_format(sender, recipient, contents):
 def main_gpt3emailgen():
 
     # TITLE and Creator information
-    st.title('GPT-3 Professional Email Generator')
-    st.markdown('Generate professional sounding formal emails based on your cheap comments - powered by GPT-3, the worlds most powerful AI Language Model!\nImplemented by '
+    st.title('GPT-3 EmAIl Generator')
+    st.markdown('Generate professional sounding emails based on your cheap comments - powered by Artificial Intelligence!\nImplemented by '
         '[Stefan Rummer](https://www.linkedin.com/in/stefanrmmr/) - '
         'view project source code on '
         '[GitHub](https://github.com/stefanrmmr/gpt3_email_generator)')
-    st.write('Your professional Email - written by AI & appreciated by your peers!')
     st.write('\n')
 
     st.subheader('\nWhat is your email all about?\n')
