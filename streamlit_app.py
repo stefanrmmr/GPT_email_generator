@@ -78,7 +78,7 @@ def main_gpt3emailgen():
 
     # TITLE and Creator information
     st.title('GPT-3 Professional Email Generator')
-    st.markdown('Implemented by '
+    st.markdown('Generate professional sounding formal emails based on your cheap comments - powered by GPT-3, the worlds most powerful AI Language Model!\nImplemented by '
         '[Stefan Rummer](https://www.linkedin.com/in/stefanrmmr/) - '
         'view project source code on '
         '[GitHub](https://github.com/stefanrmmr/gpt3_email_generator)')
@@ -87,7 +87,7 @@ def main_gpt3emailgen():
     st.subheader('\nWhat is your email all about?\n')
 
     input_contents_1 = st.text_input('Email Content 1', 'content 1 here')
-    input_contents_2 = st.text_input('Email Content 2', 'content 2 here')
+    input_contents_2 = st.text_input('', 'content 2 here')
 
     email_text = ""
     col1, col3, col4, col5 = st.columns([5, 5, 0.5, 5])
