@@ -86,7 +86,8 @@ def main_gpt3emailgen():
         '[Stefan Rummer](https://www.linkedin.com/in/stefanrmmr/) - '
         'view project source code on '
         '[GitHub](https://github.com/stefanrmmr/gpt3_email_generator)')
-    st.write('\n\n')
+    st.write('Your professional Email - written by AI & appreciated by your peers!')
+    st.write('\n')
 
     st.subheader('\nWhat is your email all about?\n')
 
@@ -116,7 +117,6 @@ def main_gpt3emailgen():
     if email_text != "":
         st.write('\n')  # add spacing
         st.subheader('\nYou will sound incredibly professional with this email!\n')
-        st.write('Your professional Email - written by AI & appreciated by your peers!')
         with st.expander("SECTION - Email Output", expanded=True):
             st.markdown(email_text)  #output the results
 
