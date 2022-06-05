@@ -5,7 +5,7 @@ import openai
 import streamlit as st
 
 # DESIGN implement changes to the standard streamlit UI/UX
-st.set_page_config(page_title="streamlit_audio_recorder")
+st.set_page_config(page_title="AI-Mail Generator")
 # Design move app further up and remove top padding
 st.markdown('''<style>.css-1egvi7u {margin-top: -4rem;}</style>''',
     unsafe_allow_html=True)
