@@ -48,7 +48,7 @@ def gen_mail_contents(email_contents):
             frequency_penalty=0,
             presence_penalty=0)
         # replace existing topic text with updated
-        email_contents[topic] = rephrased_content
+        email_contents[topic] = rephrased_content.get("choices")[0]['text']
     return email_contents
 
 
@@ -71,7 +71,7 @@ def gen_mail_format(sender, recipient, contents):
         frequency_penalty=0,
         presence_penalty=1.4)
 
-    return email_final_text
+    return email_final_text.get("choices")[0]['text']
 
 
 def main_gpt3emailgen():
