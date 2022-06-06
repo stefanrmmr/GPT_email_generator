@@ -89,28 +89,26 @@ def main_gpt3emailgen():
     st.subheader('\nWhat is your email all about?\n')
     with st.expander("SECTION - Email Input", expanded=True):
 
-        input_contents_1 = st.text_input('Enter email contents down below! (currently 2x seperate topics supported)', 'topic 1')
-        input_contents_2 = st.text_input('', 'topic 2 (optional)')
+        input_c1 = st.text_input('Enter email contents down below! (currently 2x seperate topics supported)', 'topic 1')
+        input_c2 = st.text_input('', 'topic 2 (optional)')
 
         email_text = ""  # initialize columns variables
-        col1, col3, col4, col5 = st.columns([5, 5, 0.5, 5])
+        col1, col2, space, col3 = st.columns([5, 5, 0.5, 5])
         with col1:
             input_sender = st.text_input('Sender Name', 'your name')
-        with col3:
+        with col2:
             input_recipient = st.text_input('Recipient Name', 'recipient name')
-        with col5:
+        with col3:
             st.write("\n")  # add spacing
             st.write("\n")  # add spacing
             if st.button('Generate Email NOW'):
                 with st.spinner():
 
                     input_contents = []  # let the user input all the data
-                    if (input_contents_1 != "") and
-                     (input_contents_1 != 'topic 1'):
-                        input_contents.append(str(input_contents_1))
-                    if (input_contents_2 != "") and
-                     (input_contents_2 != 'topic 2 (optional)'):
-                        input_contents.append(str(input_contents_2))
+                    if (input_c1 != "") and (input_c1 != 'topic 1'):
+                        input_contents.append(str(input_c1))
+                    if (input_c2 != "") and (input_c2 != 'topic 2 (optional)'):
+                        input_contents.append(str(input_c2))
 
                     if (len(input_contents) == 0):
                         st.write('Please fill in some contents for your message!')
