@@ -103,14 +103,21 @@ def main_gpt3emailgen():
             st.write("\n")  # add spacing
             if st.button('Generate Email NOW'):
                 with st.spinner():
+
                     input_contents = []  # let the user input all the data
-                    if input_contents_1 != "":
+                    if (input_contents_1 != "") and
+                     (input_contents_1 != 'topic 1'):
                         input_contents.append(str(input_contents_1))
-                    if input_contents_2 != "":
+                    if (input_contents_2 != "") and
+                     (input_contents_2 != 'topic 2 (optional)'):
                         input_contents.append(str(input_contents_2))
-                    email_text = gen_mail_format(input_sender,
-                                                 input_recipient,
-                                                 input_contents)
+
+                    if (len(input_contents) == 0):
+                        st.write('Please fill in some contents for your message!')
+                    if (len(input_contents) >= 1):
+                        email_text = gen_mail_format(input_sender,
+                                                     input_recipient,
+                                                     input_contents)
     if email_text != "":
         st.write('\n')  # add spacing
         st.subheader('\nYou sound incredibly professional!\n')
