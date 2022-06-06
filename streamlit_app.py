@@ -41,12 +41,12 @@ def gen_mail_contents(email_contents):
         rephrased_content = openai.Completion.create(
             engine="text-davinci-002",
             prompt=f"Rewrite the text to sound professional, polite and motivated. {input_text}\nText: \nRewritten text:",
-            temperature=0,
-            max_tokens=len(input_text)*4,
+            temperature=0.1,
+            max_tokens=len(input_text)*3,
             top_p=0.68,
             best_of=3,
             frequency_penalty=0,
-            presence_penalty=0)
+            presence_penalty=0.5)
 
         # replace existing topic text with updated
         email_contents[topic] = rephrased_content.get("choices")[0]['text']
@@ -65,14 +65,14 @@ def gen_mail_format(sender, recipient, email_contents):
 
     email_final_text = openai.Completion.create(
         engine="text-davinci-002",
-        prompt=f"Write a professional sounding email text that includes Content1 and Content2 separately.\nThe text needs to be written to adhere to the specified writing styles and abbreviations need to be replaced.\n\nSender: {sender}\nRecipient: {recipient} {contents_str}\nWriting Styles: motivated, formal\n\nEmail Text:",
+        prompt=f"Write a professional sounding email text that must include Content1 and Content2.\nThe text needs to be written to adhere to the specified writing styles and abbreviations need to be replaced.\n\nSender: {sender}\nRecipient: {recipient} {contents_str}\nWriting Styles: motivated, formal\n\nEmail Text:",
         # prompt=f"Write a professional sounding email text that includes all of the following contents separately.\nThe text needs to be written to adhere to the specified writing styles and abbreviations need to be replaced.\n\nSender: {sender}\nRecipient: {recipient} {contents_str}\nWriting Styles: motivated, formal\n\nEmail Text:",
         temperature=0.8,
-        max_tokens=contents_length*4,
-        top_p=0,
+        max_tokens=contents_length*3,
+        top_p=0.4,
         best_of=3,
         frequency_penalty=0,
-        presence_penalty=1)
+        presence_penalty=1.4)
 
     return email_final_text.get("choices")[0]['text']
 
