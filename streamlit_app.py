@@ -46,7 +46,7 @@ def gen_mail_contents(email_contents):
             top_p=0.68,
             best_of=3,
             frequency_penalty=0,
-            presence_penalty=0)
+            presence_penalty=0.5)
 
         # replace existing topic text with updated
         email_contents[topic] = rephrased_content.get("choices")[0]['text']
@@ -72,7 +72,7 @@ def gen_mail_format(sender, recipient, email_contents):
         top_p=0.52,
         best_of=3,
         frequency_penalty=0,
-        presence_penalty=0.8)
+        presence_penalty=1.4)
 
     return email_final_text.get("choices")[0]['text']
 
