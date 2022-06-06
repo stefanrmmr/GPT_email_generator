@@ -65,11 +65,11 @@ def gen_mail_format(sender, recipient, email_contents):
 
     email_final_text = openai.Completion.create(
         engine="text-davinci-002",
-        prompt=f"Write a professional sounding email text that includes Content1 and Content2.\nThe text needs to be written to adhere to the specified writing styles and abbreviations need to be replaced.\n\nSender: {sender}\nRecipient: {recipient} {contents_str}\nWriting Styles: motivated, formal\n\nEmail Text:",
+        prompt=f"Write a professional sounding email text that includes Content1 and Content2 separately.\nThe text needs to be written to adhere to the specified writing styles and abbreviations need to be replaced.\n\nSender: {sender}\nRecipient: {recipient} {contents_str}\nWriting Styles: motivated, formal\n\nEmail Text:",
         # prompt=f"Write a professional sounding email text that includes all of the following contents separately.\nThe text needs to be written to adhere to the specified writing styles and abbreviations need to be replaced.\n\nSender: {sender}\nRecipient: {recipient} {contents_str}\nWriting Styles: motivated, formal\n\nEmail Text:",
-        temperature=1,
+        temperature=0.8,
         max_tokens=contents_length*4,
-        top_p=0.52,
+        top_p=0.4,
         best_of=3,
         frequency_penalty=0,
         presence_penalty=1.4)
@@ -79,23 +79,21 @@ def gen_mail_format(sender, recipient, email_contents):
 
 def main_gpt3emailgen():
 
-    # TITLE and Creator information
-    st.image('image_banner.png')
+    st.image('image_banner.png')  # TITLE and Creator information
     st.markdown('Generate professional sounding emails based on your cheap comments - powered by Artificial Intelligence (OpenAI GPT-3)! Implemented by '
         '[stefanrmmr](https://www.linkedin.com/in/stefanrmmr/) - '
         'view project source code on '
         '[GitHub](https://github.com/stefanrmmr/gpt3_email_generator)')
-    st.write('\n')
+    st.write('\n')  # add spacing
 
     st.subheader('\nWhat is your email all about?\n')
-
     with st.expander("SECTION - Email Input", expanded=True):
-        input_contents_1 = st.text_input('Enter email contents down below! (currently 2x seperate topics supported)', 'content topic 1')
-        input_contents_2 = st.text_input('', 'topic 2 (optional))')
 
-        col1, col3, col4, col5 = st.columns([5, 5, 0.5, 5])
+        input_contents_1 = st.text_input('Enter email contents down below! (currently 2x seperate topics supported)', 'topic 1')
+        input_contents_2 = st.text_input('', 'topic 2 (optional)')
+
         email_text = ""  # initialize columns variables
-
+        col1, col3, col4, col5 = st.columns([5, 5, 0.5, 5])
         with col1:
             input_sender = st.text_input('Sender Name', 'your name')
         with col3:
@@ -110,8 +108,9 @@ def main_gpt3emailgen():
                         input_contents.append(str(input_contents_1))
                     if input_contents_2 != "":
                         input_contents.append(str(input_contents_2))
-                    email_text = gen_mail_format(input_sender, input_recipient, input_contents)
-
+                    email_text = gen_mail_format(input_sender,
+                                                 input_recipient,
+                                                 input_contents)
     if email_text != "":
         st.write('\n')  # add spacing
         st.subheader('\nYou sound incredibly professional!\n')
