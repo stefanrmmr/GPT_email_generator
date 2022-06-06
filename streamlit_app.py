@@ -5,7 +5,7 @@ import openai
 import streamlit as st
 
 # DESIGN implement changes to the standard streamlit UI/UX
-st.set_page_config(page_title="rephraise")
+st.set_page_config(page_title="rephraise", page_icon="rephraise_logo.png",)
 # Design move app further up and remove top padding
 st.markdown('''<style>.css-1egvi7u {margin-top: -4rem;}</style>''',
     unsafe_allow_html=True)
@@ -90,8 +90,8 @@ def main_gpt3emailgen():
     st.subheader('\nWhat is your email all about?\n')
 
     with st.expander("SECTION - Email Input", expanded=True):
-        input_contents_1 = st.text_input('Enter email contents down below! (currently 2x seperate topics supported)', 'content 1 here')
-        input_contents_2 = st.text_input('', 'content 2 here')
+        input_contents_1 = st.text_input('Enter email contents down below! (currently 2x seperate topics supported)', 'content topic 1')
+        input_contents_2 = st.text_input('', 'topic 2 (optional))')
 
         col1, col3, col4, col5 = st.columns([5, 5, 0.5, 5])
         email_text = ""  # initialize columns variables
