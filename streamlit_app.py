@@ -56,7 +56,7 @@ def gen_mail_contents(email_contents):
 def gen_mail_format(sender, recipient, email_contents):
     # update the contents data with more formal statements
     email_contents = gen_mail_contents(email_contents)
-    # st.write(email_contents)  # view augmented contents
+    st.write(email_contents)  # view augmented contents
 
     contents_str, contents_length = "", 0
     for topic in range(len(email_contents)):  # aggregate all contents into one
