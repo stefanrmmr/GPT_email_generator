@@ -95,9 +95,9 @@ def main_gpt3emailgen():
         email_text = ""  # initialize columns variables
         col1, col2, space, col3 = st.columns([5, 5, 0.5, 5])
         with col1:
-            input_sender = st.text_input('Sender Name', 'your name')
+            input_sender = st.text_input('Sender Name', '[rephraise]')
         with col2:
-            input_recipient = st.text_input('Recipient Name', 'recipient name')
+            input_recipient = st.text_input('Recipient Name', '[recipient]')
         with col3:
             st.write("\n")  # add spacing
             st.write("\n")  # add spacing
@@ -110,12 +110,16 @@ def main_gpt3emailgen():
                     if (input_c2 != "") and (input_c2 != 'topic 2 (optional)'):
                         input_contents.append(str(input_c2))
 
-                    if (len(input_contents) == 0):
+                    if (len(input_contents) == 0):  # remind user to provide data
                         st.write('Please fill in some contents for your message!')
-                    if (len(input_contents) >= 1):
-                        email_text = gen_mail_format(input_sender,
-                                                     input_recipient,
-                                                     input_contents)
+                    if (len(input_sender) == 0) or (len(input_recipient) == 0):
+                        st.write('Sender and Recipient names can not be empty!')
+
+                    if (len(input_contents) >= 1):  # initiate gpt3 mail gen process
+                        if (len(input_sender) != 0) and (len(input_recipient) != 0):
+                            email_text = gen_mail_format(input_sender,
+                                                         input_recipient,
+                                                         input_contents)
     if email_text != "":
         st.write('\n')  # add spacing
         st.subheader('\nYou sound incredibly professional!\n')
