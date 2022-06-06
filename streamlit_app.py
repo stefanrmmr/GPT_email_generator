@@ -34,37 +34,39 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 def gen_mail_contents(email_contents):
+
     # iterate through all seperate topics
     for topic in range(len(email_contents)):
         input_text = email_contents[topic]
-        text_length = len(input_text)
         rephrased_content = openai.Completion.create(
             engine="text-davinci-002",
             prompt=f"Rewrite the text to sound professional, polite and motivated. {input_text}\nText: \nRewritten text:",
-            temperature=0,
-            max_tokens=text_length*2,
+            temperature=0.1,
+            max_tokens=len(input_text)*2,
             top_p=0.68,
             best_of=3,
             frequency_penalty=0,
             presence_penalty=0)
+
         # replace existing topic text with updated
         email_contents[topic] = rephrased_content.get("choices")[0]['text']
     return email_contents
 
 
-def gen_mail_format(sender, recipient, contents):
+def gen_mail_format(sender, recipient, email_contents):
     # update the contents data with more formal statements
-    contents = gen_mail_contents(contents)
-    # st.write(contents)  # view augmented contents
+    email_contents = gen_mail_contents(email_contents)
+    # st.write(email_contents)  # view augmented contents
 
     contents_str, contents_length = "", 0
-    for topic in contents:  # aggregate all contents into one
-        contents_str = contents_str + "\nContent: " + topic
-        contents_length += len(topic)  # calc total chars
+    for topic in range(len(email_contents)):  # aggregate all contents into one
+        contents_str = contents_str + f"\nContent{topic+1}: " + email_contents[topic]
+        contents_length += len(email_contents[topic])  # calc total chars
 
     email_final_text = openai.Completion.create(
         engine="text-davinci-002",
-        prompt=f"Write a professional sounding email text that includes all of the following contents separately.\nThe text needs to be written to adhere to the specified writing styles and abbreviations need to be replaced.\n\nSender: {sender}\nRecipient: {recipient} {contents_str}\nWriting Styles: motivated, formal\n\nEmail Text:",
+        prompt=f"Write a professional sounding email text that includes Content1 and Content2 separately.\nThe text needs to be written to adhere to the specified writing styles and abbreviations need to be replaced.\n\nSender: {sender}\nRecipient: {recipient} {contents_str}\nWriting Styles: motivated, formal\n\nEmail Text:",
+        # prompt=f"Write a professional sounding email text that includes all of the following contents separately.\nThe text needs to be written to adhere to the specified writing styles and abbreviations need to be replaced.\n\nSender: {sender}\nRecipient: {recipient} {contents_str}\nWriting Styles: motivated, formal\n\nEmail Text:",
         temperature=1,
         max_tokens=contents_length*4,
         top_p=0.52,
