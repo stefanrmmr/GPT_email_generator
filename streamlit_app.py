@@ -42,7 +42,7 @@ def gen_mail_contents(email_contents):
             engine="text-davinci-002",
             prompt=f"Rewrite the text to sound professional, polite and motivated.\nText: {input_text}\nRewritten text:",
             temperature=0.8,
-            max_tokens=len(input_text)*2,
+            max_tokens=len(input_text)*3,
             top_p=0.8,
             best_of=3,
             frequency_penalty=0.0,
