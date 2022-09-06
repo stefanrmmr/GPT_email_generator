@@ -48,7 +48,7 @@ def gen_mail_contents(email_contents):
             temperature=0.8,
             max_tokens=len(input_text)*3,
             top_p=0.8,
-            best_of=3,
+            best_of=2,
             frequency_penalty=0.0,
             presence_penalty=0.0)
 
@@ -74,7 +74,7 @@ def gen_mail_format(sender, recipient, style, email_contents):
         temperature=0.8,
         max_tokens=contents_length*2,
         top_p=0.8,
-        best_of=3,
+        best_of=2,
         frequency_penalty=0.0,
         presence_penalty=0.0)
 
