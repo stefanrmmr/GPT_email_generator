@@ -96,7 +96,7 @@ def main_gpt3emailgen():
         input_c2 = st.text_input('', 'topic 2 (optional)')
 
         email_text = ""  # initialize columns variables
-        col1, col2, col3, space, col4 = st.columns([5, 5, 0.5, 5])
+        col1, col2, col3, space, col4 = st.columns([5, 5, 5, 0.5, 5])
         with col1:
             input_sender = st.text_input('Sender Name', '[rephraise]')
         with col2:
