@@ -20,6 +20,9 @@ st.markdown('''<style>.css-qrbaxs {min-height: 0.0rem;}</style>''',
 # Design change spinner color to primary color
 st.markdown('''<style>.stSpinner > div > div {border-top-color: #9d03fc;}</style>''',
     unsafe_allow_html=True)
+# Design change min height of text input box
+st.markdown('''<style>.css-15tx938{min-height: 0.0rem;}</style>''',
+    unsafe_allow_html=True)
 # Design hide top header line
 hide_decoration_bar_style = '''<style>header {visibility: hidden;}</style>'''
 st.markdown(hide_decoration_bar_style, unsafe_allow_html=True)
@@ -40,7 +43,7 @@ def gen_mail_contents(email_contents):
         input_text = email_contents[topic]
         rephrased_content = openai.Completion.create(
             engine="text-davinci-002",
-            prompt=f"Rewrite the text to sound professional, polite and motivated.\nText: {input_text}\nRewritten text:",
+            prompt=f"Rewrite the text to sound professional, considerate and polite.\nText: {input_text}\nRewritten text:",
             temperature=0.8,
             max_tokens=len(input_text)*3,
             top_p=0.8,
@@ -65,7 +68,7 @@ def gen_mail_format(sender, recipient, email_contents):
 
     email_final_text = openai.Completion.create(
         engine="text-davinci-002",
-        prompt=f"Write a professional sounding email text that must include Content1 and Content2.\nThe text needs to be written to adhere to the specified writing styles and abbreviations need to be replaced.\n\nSender: {sender}\nRecipient: {recipient} {contents_str}\nWriting Styles: motivated, formal\n\nEmail Text:",
+        prompt=f"Write a professional sounding email text that must include Content1 and Content2.\nThe text needs to be written to adhere to the specified writing styles and abbreviations need to be replaced.\n\nSender: {sender}\nRecipient: {recipient} {contents_str}\nWriting Styles: formal\n\nEmail Text:",
         # prompt=f"Write a professional sounding email text that includes all of the following contents separately.\nThe text needs to be written to adhere to the specified writing styles and abbreviations need to be replaced.\n\nSender: {sender}\nRecipient: {recipient} {contents_str}\nWriting Styles: motivated, formal\n\nEmail Text:",
         temperature=0.8,
         max_tokens=contents_length*2,
