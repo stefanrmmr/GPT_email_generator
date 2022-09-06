@@ -43,7 +43,7 @@ def gen_mail_contents(email_contents):
         input_text = email_contents[topic]
         rephrased_content = openai.Completion.create(
             engine="text-davinci-002",
-            prompt=f"Rewrite the text to be elaborate and polite.Abbreviations need to be replaced.\nText: {input_text}\nRewritten text:",
+            prompt=f"Rewrite the text to be elaborate and polite.\nAbbreviations need to be replaced.\nText: {input_text}\nRewritten text:",
             # prompt=f"Rewrite the text to sound professional, elaborate and polite.\nText: {input_text}\nRewritten text:",
             temperature=0.8,
             max_tokens=len(input_text)*3,
@@ -104,7 +104,7 @@ def main_gpt3emailgen():
             input_recipient = st.text_input('Recipient Name', '[recipient]')
         with col3:
             input_style = st.selectbox('Writing Style',
-                                       ('formal', 'optimistic', 'concerned', 'sarcastic'),
+                                       ('formal', 'motivated', 'concerned', 'disappointed'),
                                        index=0)
         with col4:
             st.write("\n")  # add spacing
