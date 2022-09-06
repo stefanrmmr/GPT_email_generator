@@ -56,7 +56,7 @@ def gen_mail_contents(email_contents):
     return email_contents
 
 
-def gen_mail_format(sender, recipient, email_contents):
+def gen_mail_format(sender, recipient, style, email_contents):
     # update the contents data with more formal statements
     email_contents = gen_mail_contents(email_contents)
     # st.write(email_contents)  # view augmented contents
@@ -68,7 +68,7 @@ def gen_mail_format(sender, recipient, email_contents):
 
     email_final_text = openai.Completion.create(
         engine="text-davinci-002",
-        prompt=f"Write a professional sounding email text that must include Content1 and Content2.\nThe text needs to be written to adhere to the specified writing styles and abbreviations need to be replaced.\n\nSender: {sender}\nRecipient: {recipient} {contents_str}\nWriting Styles: formal\n\nEmail Text:",
+        prompt=f"Write a professional email sounds {style} and includes Content1 and Content2 in that order.\nAbbreviations need to be replaced.\n\nSender: {sender}\nRecipient: {recipient} {contents_str}\n\nEmail Text:",
         # prompt=f"Write a professional sounding email text that includes all of the following contents separately.\nThe text needs to be written to adhere to the specified writing styles and abbreviations need to be replaced.\n\nSender: {sender}\nRecipient: {recipient} {contents_str}\nWriting Styles: motivated, formal\n\nEmail Text:",
         temperature=0.8,
         max_tokens=contents_length*2,
@@ -96,12 +96,16 @@ def main_gpt3emailgen():
         input_c2 = st.text_input('', 'topic 2 (optional)')
 
         email_text = ""  # initialize columns variables
-        col1, col2, space, col3 = st.columns([5, 5, 0.5, 5])
+        col1, col2, col3, space, col4 = st.columns([5, 5, 0.5, 5])
         with col1:
             input_sender = st.text_input('Sender Name', '[rephraise]')
         with col2:
             input_recipient = st.text_input('Recipient Name', '[recipient]')
         with col3:
+            input_style = st.selectbox('Writing Style',
+                                       ('formal', 'motivated', 'optimistic', 'concerned', 'sarcastic'),
+                                       index=0)
+        with col4:
             st.write("\n")  # add spacing
             st.write("\n")  # add spacing
             if st.button('Generate Email NOW'):
@@ -122,6 +126,7 @@ def main_gpt3emailgen():
                         if (len(input_sender) != 0) and (len(input_recipient) != 0):
                             email_text = gen_mail_format(input_sender,
                                                          input_recipient,
+                                                         input_style,
                                                          input_contents)
     if email_text != "":
         st.write('\n')  # add spacing
