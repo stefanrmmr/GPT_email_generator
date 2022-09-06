@@ -43,7 +43,8 @@ def gen_mail_contents(email_contents):
         input_text = email_contents[topic]
         rephrased_content = openai.Completion.create(
             engine="text-davinci-002",
-            prompt=f"Rewrite the text to sound professional, considerate and polite.\nText: {input_text}\nRewritten text:",
+            prompt=f"Rewrite the text to be elaborate and polite.Abbreviations need to be replaced.\nText: {input_text}\nRewritten text:",
+            # prompt=f"Rewrite the text to sound professional, elaborate and polite.\nText: {input_text}\nRewritten text:",
             temperature=0.8,
             max_tokens=len(input_text)*3,
             top_p=0.8,
@@ -68,7 +69,7 @@ def gen_mail_format(sender, recipient, style, email_contents):
 
     email_final_text = openai.Completion.create(
         engine="text-davinci-002",
-        prompt=f"Write a professional email sounds {style} and includes Content1 and Content2 in that order.\nAbbreviations need to be replaced.\n\nSender: {sender}\nRecipient: {recipient} {contents_str}\n\nEmail Text:",
+        prompt=f"Write a professional email sounds {style} and includes Content1 and Content2 in that order.\n\nSender: {sender}\nRecipient: {recipient} {contents_str}\n\nEmail Text:",
         # prompt=f"Write a professional sounding email text that includes all of the following contents separately.\nThe text needs to be written to adhere to the specified writing styles and abbreviations need to be replaced.\n\nSender: {sender}\nRecipient: {recipient} {contents_str}\nWriting Styles: motivated, formal\n\nEmail Text:",
         temperature=0.8,
         max_tokens=contents_length*2,
@@ -103,12 +104,12 @@ def main_gpt3emailgen():
             input_recipient = st.text_input('Recipient Name', '[recipient]')
         with col3:
             input_style = st.selectbox('Writing Style',
-                                       ('formal', 'motivated', 'optimistic', 'concerned', 'sarcastic'),
+                                       ('formal', 'optimistic', 'concerned', 'sarcastic'),
                                        index=0)
         with col4:
             st.write("\n")  # add spacing
             st.write("\n")  # add spacing
-            if st.button('Generate Email NOW'):
+            if st.button('Generate Email'):
                 with st.spinner():
 
                     input_contents = []  # let the user input all the data
