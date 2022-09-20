@@ -133,7 +133,7 @@ def main_gpt3emailgen():
         st.write('\n')  # add spacing
         st.subheader('\nYou sound incredibly professional!\n')
         with st.expander("SECTION - Email Output", expanded=True):
-            st.markdown(email_text)  #output the results
+            st.code(email_text)  #output the results + can be copied
 
 
 if __name__ == '__main__':
